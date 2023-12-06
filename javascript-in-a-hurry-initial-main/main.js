@@ -23,4 +23,12 @@ document.querySelector("#close-nav-menu").addEventListener("click", function(){
 const customer = "Lily Faluna";//not changed
 let balance = 2000;//balance may change, so we need to be able to reaasign value
 balance = balance + 200;
-console.log("Hi, " + customer + ". Your balance USD is" + balance);
+console.log("Hi, " + customer + ". Your balance USD is " + balance);
+
+//be consistent with variable naming, choose camel case or underscore like customer_balance, or customerName. Can't start with number, no dashes
+
+//typeof operator will tell you the type
+
+//only use numbers when you need to do calculations, in case of account numbers, use strings.  
+//remember you can get the length of a string, variableName.length,you can also use .slice to get like the first two characters of a string. variableName.slice(0,2) would get 0 and 1 (because the second number is excluded). you can also remove things from a string, using replace. variableName.replace("_", "$") this would replace the underscore with a $, or we could just remove the underscore by having the second item be empty, like this "" BUT remember to save this action, you would need to reassign the value to the variable!
+
