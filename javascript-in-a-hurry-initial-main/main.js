@@ -48,12 +48,13 @@ function celsiusToFahr(temperature) {
 const greetingText = "Good morning!";
 const weatherCondition = "sunny";
 const userLocation = "New York";
-let temperature = 25;
-let weatherText = `The weather is ${weatherCondition} in ${userLocation} and it is ${celsiusToFahr(temperature).toFixed(1)} °F outside.`;//can also use temperature.toString()
+let temperature = 25;//sadly we have to set this manually right now
+let celsiusText = `The weather is ${weatherCondition} in ${userLocation} and it is ${temperature.toFixed(1)} °F outside.`;//can also use temperature.toString()
+let farenheitText = `The weather is ${weatherCondition} in ${userLocation} and it is ${celsiusToFahr(temperature).toFixed(1)} °F outside.`;//can also use temperature.toString()
 
 //send the values to the HTML elements!
 document.querySelector("#greeting").innerHTML = greetingText;
-document.querySelector("p#weather").innerHTML = weatherText;
+document.querySelector("p#weather").innerHTML = celsiusText;
 
 
 
@@ -68,4 +69,29 @@ student = {"name": "John", "yearOfBirth": 1980, "country": "Italy"}//key value p
 //null and undefined have the same value but the TYPE is different
 
 //The given JavaScript comparison a == b, where a = "2" and b = 2, will produce a result of true. This is because the loose equality operator (==) performs type coercion, converting the operands to the same type before making the comparison. 
+
+//TEMPERATURE CHANGE (my function)
+// document.querySelector(".weather-group").addEventListener("click", function(e) {
+//     //look for target: input#fahr or input#celsius by passing the e to console log, which is an object
+//     console.log(e.target.id);//this returns the id when we click the button
+//     //we will need to write a conditional here 
+//     let finalTemp;
+//     if (e.target.id == "fahr") {
+//         finalTemp = 5/9 * (temperature - 32)
+//     } else {
+//         finalTemp =  (temperature * (9/5)) + 32
+//     } return finalTemp;
+// });
+
+
+//TEMPERATURE CHANGE 
+document.querySelector(".weather-group").addEventListener("click", function(e) {
+   
+    if (e.target.id == "celsius") {
+        document.querySelector("p#weather").innerHTML = celsiusText;
+    } else if (e.target.id == "fahr") {
+        document.querySelector("p#weather").innerHTML = farenheitText;
+    }
+});
+
 
