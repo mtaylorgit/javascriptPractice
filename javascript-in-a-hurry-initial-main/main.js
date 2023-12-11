@@ -34,3 +34,38 @@ console.log("Hi, " + customer + ". Your balance USD is " + balance);
 
 //integer and float -- everything in Javascript is number. Other languages differentiate. also remember the MATH object in JavaScript! it has .round, and many other methods!! .floor rounds down, force rounding up .ceil, .toFixed(#ofdecimal places) if ommitted, no decimal places. Examples: Math.round(price) is a built in function; price.toFixed(2) this is a method. parseFloat(num1) --> this converts a string to a float with decimals. You can convert a number to a string, with num1.toString();
 
+//need 4 dynamic items on the page
+
+//function to convert degrees
+function celsiusToFahr(temperature) {
+    let fahr = (temperature * (9/5)) + 32
+    return fahr;
+}
+//invoke the function above to use it!
+
+//Greeting Section
+
+const greetingText = "Good morning!";
+const weatherCondition = "sunny";
+const userLocation = "New York";
+let temperature = 25;
+let weatherText = `The weather is ${weatherCondition} in ${userLocation} and it is ${celsiusToFahr(temperature).toFixed(1)} °F outside.`;//can also use temperature.toString()
+
+//send the values to the HTML elements!
+document.querySelector("#greeting").innerHTML = greetingText;
+document.querySelector("p#weather").innerHTML = weatherText;
+
+
+
+
+//array for the images
+//let array1 = []; also array1.length; the last element array1[array1.length - 1]
+//add another element to an array, at the end -- array1.push(item); -- add a number to the beginning, array1.unshift(item); --we can merge 2 arrays, array1.concat(array2);
+
+//objects
+student = {"name": "John", "yearOfBirth": 1980, "country": "Italy"}//key value pairs
+//undefined is the absence of a value on a variable
+//null and undefined have the same value but the TYPE is different
+
+//The given JavaScript comparison a == b, where a = "2" and b = 2, will produce a result of true. This is because the loose equality operator (==) performs type coercion, converting the operands to the same type before making the comparison. 
+
