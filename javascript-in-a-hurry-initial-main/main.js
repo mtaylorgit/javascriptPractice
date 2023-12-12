@@ -95,3 +95,53 @@ document.querySelector(".weather-group").addEventListener("click", function(e) {
 });
 
 
+//DATE SECTION
+new Date() //this is a Javascript object for date, will just print the date
+new Date("2023-12-11") //this will create a dat object with that time stamp
+shippingDate = new Date("2023-12-20")
+deliveryDate = new Date("2023-12-26")
+deliveryDate - shippingDate //gives you the number of milliseconds between the dates
+//divide this by 8640000 to get hours so (deliveryDate - shippingDate)/8640000
+//METHODS of the DATE OBJECT
+// new Date().getHours()
+// new Date().getMinutes()
+// new Date().getSeconds()
+
+//example: 
+{/* <body>
+    
+    <div id="local-time">
+        <span id="hours">00</span> : <span id="minutes">00</span>
+    </div>
+    
+    <script type="text/javascript" charset="utf-8">
+        // write your Javascript code below this line
+        let hours = new Date().getHours();
+        let minutes = new Date().getMinutes();
+
+    </script>
+</body> */}
+let localTime = new Date();
+document.querySelector("span[data-time=hours]").textContent = localTime.getHours();
+document.querySelector("span[data-time=minutes]").textContent = localTime.getMinutes();
+document.querySelector("span[data-time=seconds]").textContent = localTime.getSeconds();
+
+//set timeout for the seconds on the time
+setTimeout(function(){},3000) //delayed 3 seconds, 3000 is in milliseconds
+
+
+//padstart
+let myString = "8"
+myString.padStart(4,"0") //this will make it 08, so pads the single digits
+setInterval(function(){
+    let localTime = new Date();
+document.querySelector("span[data-time=hours]").textContent = localTime.getHours().toString().padStart(2,"0");
+document.querySelector("span[data-time=minutes]").textContent = localTime.getMinutes().toString().padStart(2,"0");
+document.querySelector("span[data-time=seconds]").textContent = localTime.getSeconds().toString().padStart(2,"0");
+},1000); //every second gets the time every second updated
+
+
+
+
+
+
