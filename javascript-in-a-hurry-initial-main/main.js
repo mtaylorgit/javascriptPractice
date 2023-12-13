@@ -140,8 +140,55 @@ document.querySelector("span[data-time=minutes]").textContent = localTime.getMin
 document.querySelector("span[data-time=seconds]").textContent = localTime.getSeconds().toString().padStart(2,"0");
 },1000); //every second gets the time every second updated
 
+//LOOPS
+let animals = ["dog", "cat", "lion"];
 
+for (let i = 0; i < animals.length; i++) {//this works regardless of how many elements in the array
+    console.log(i);
+}
+//easier way below, same result
+for (let i in animals) {//this handles the size of the array as necessary
+    console.log(animals[i]);
+}
+//loop through and object
+let bird = {"name": "parakeet", "color": "white"};
 
+for (let i in animals) {
+    console.log(bird[1]);//prints value
+    console.log(1 + ":" + animals[i]);//prints the name of the property and the value
+}
+//test of loops - print all accounts starting with EX to the console
+let bankAccounts = ["EX_983746", "US_233478", "UK_098765", "EX_098777", "PT_002544"];
+
+function printEXAccounts() {
+// write your solution here
+    for (let i of bankAccounts) {
+        if (i.startsWith("E")) {
+        console.log(i);
+    }
+}
+}
+//GALLERY SECTION
+//src: "./assets/gallery/image1.jpg alt="Thumbnail Image 1"
+
+const galleryImages = [
+    {
+        src: "./assets/gallery/image1.jpg",
+        alt: "Thumbnail Image 1"
+    },
+    {
+        src: "./assets/gallery/image2.jpg",
+        alt: "Thumbnail Image 2"
+    },
+    {
+        src: "./assets/gallery/image3.jpg",
+        alt: "Thumbnail Image 3"
+    }
+];
+
+for (let i in galleryImages) {
+    console.log(galleryImages[i]);
+}
 
 
 
