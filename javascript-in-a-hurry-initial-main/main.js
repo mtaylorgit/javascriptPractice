@@ -186,9 +186,62 @@ const galleryImages = [
     }
 ];
 
-for (let i in galleryImages) {
-    console.log(galleryImages[i]);
-}
+// for (let i in galleryImages) {
+//     console.log(galleryImages[i]);
+// }
+
+//forEach Loop(a method of the array data type)
+galleryImages.forEach(function(image, index){
+    console.log(image); //using index AND the elements themselves
+});
+
+//REVIEW
+// let lessons = [
+//     {
+//       id: "273",
+//       title: "Variables",
+//       length: 12
+//     },
+//     {
+//      id: "295",
+//      title: "Conditionals",
+//      length: 12
+//     },
+//     {
+//      id: "299",
+//      title: "Functions",
+//      length: 12
+//     }
+//     ]; 
+    
+//     // use this variable to add the lesson titles
+//     let lessonTitles = [];
+    
+//     // write your code below this line
+//     lessons.forEach(function(lesson) {
+//         lessonTitles.push(lesson.title);
+//     });
+    
+let mainImage = document.querySelector("#gallery > img");
+let thumbnails = document.querySelector("#gallery .thumbnails")
+
+mainImage.src = galleryImages[0].src;
+mainImage.alt = galleryImages[0].src;
+
+//dynamic thumbnails below
+//this dynamically creates thumbnails for each image in the 'gallery images' array and appends them to the thumbnails container.
+//the code uses the 'querySelector' method to select elements by their css selector and the 'create Element' method to create new 'img' elements for the thumbnails. the 'forEach' method is used to iterate over the 'galleryImages' array and create a thumbnails for each image.
+
+galleryImages.forEach(function(image, index){
+    let thumb = document.createElement("img");
+    thumb.src = image.src;
+    thumb.alt = image.alt;
+    thumb.dataset.arrayIndex = index;
+    thumb.dataset.selected = false;
+    thumbnails.appendChild(thumb);
+});
+
+
 
 
 
