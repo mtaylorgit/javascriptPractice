@@ -1,16 +1,62 @@
-// alert("test javascript code nalga fochi");
 
-// function testAlert(message) {
-//     alert(message);
-// }
+//put this gallery at the top so it will be available to all functions
+const galleryImages = [
 
-// testAlert("Testing this!");
-// console.log("stinky poo!");
-// console.log(4 + 5);
+    {
+        src: "./assets/gallery/image1.jpg",
+        alt: "Thumbnail Image 1"
+    },
+    {
+        src: "./assets/gallery/image2.jpg",
+        alt: "Thumbnail Image 2"
+    },
+    {
+        src: "./assets/gallery/image3.jpg",
+        alt: "Thumbnail Image 3"
+    }
+];
 
-// document.getElementById("greeting").innerHTML = "Poop duty!";
+const products = [
+    {
+      title: "AstroFiction",
+      author: "John Doe",
+      price: 49.9,
+      image: "./assets/products/img6.png"
+    },
+    {
+      title: "Space Odissey",
+      author: "Marie Anne",
+      price: 35,
+      image: "./assets/products/img1.png"
+    },
+    {
+      title: "Doomed City",
+      author: "Jason Cobert",
+      price: 0,
+      image: "./assets/products/img2.png"
+    },
+    {
+      title: "Black Dog",
+      author: "John Doe",
+      price: 85.35,
+      image: "./assets/products/img3.png"
+    },
+    {
+      title: "My Little Robot",
+      author: "Pedro Paulo",
+      price: 0,
+      image: "./assets/products/img5.png"
+    },
+    {
+      title: "Garden Girl",
+      author: "Ankit Patel",
+      price: 45,
+      image: "./assets/products/img4.png"
+    }
+  ]
 
-//functionality to open and close the menu below
+//functionality to open and close the menu 
+function menuHandler() {
 document.querySelector("#open-nav-menu").addEventListener("click", function(){
     document.querySelector("header nav .wrapper").classList.add("nav-open");
 });
@@ -18,25 +64,11 @@ document.querySelector("#open-nav-menu").addEventListener("click", function(){
 document.querySelector("#close-nav-menu").addEventListener("click", function(){
     document.querySelector("header nav .wrapper").classList.remove("nav-open");
 });
-//Variables - he used VAR, but launchcode recommends LET! because VAR is a global variable, available everywhere and that cause problems. Using LET it will only be available inside that block of code.
-//the CONST keyword, it works same as LET - when you are not going to reassign a value to a variable, use CONST. unless you want to reassign the variable, then use LET
-const customer = "Lily Faluna";//not changed
-let balance = 2000;//balance may change, so we need to be able to reaasign value
-balance = balance + 200;
-console.log("Hi, " + customer + ". Your balance USD is " + balance);
+}
 
-//be consistent with variable naming, choose camel case or underscore like customer_balance, or customerName. Can't start with number, no dashes
 
-//typeof operator will tell you the type
 
-//only use numbers when you need to do calculations, in case of account numbers, use strings.  
-//remember you can get the length of a string, variableName.length,you can also use .slice to get like the first two characters of a string. variableName.slice(0,2) would get 0 and 1 (because the second number is excluded). you can also remove things from a string, using replace. variableName.replace("_", "$") this would replace the underscore with a $, or we could just remove the underscore by having the second item be empty, like this "" BUT remember to save this action, you would need to reassign the value to the variable!
-
-//integer and float -- everything in Javascript is number. Other languages differentiate. also remember the MATH object in JavaScript! it has .round, and many other methods!! .floor rounds down, force rounding up .ceil, .toFixed(#ofdecimal places) if ommitted, no decimal places. Examples: Math.round(price) is a built in function; price.toFixed(2) this is a method. parseFloat(num1) --> this converts a string to a float with decimals. You can convert a number to a string, with num1.toString();
-
-//need 4 dynamic items on the page
-
-//function to convert degrees
+//function to convert degrees, doesn't need to be inside the handler
 function celsiusToFahr(temperature) {
     let fahr = (temperature * (9/5)) + 32
     return fahr;
@@ -45,7 +77,31 @@ function celsiusToFahr(temperature) {
 
 //Greeting Section
 
-const greetingText = "Good morning!";
+function greetingHandler() {
+let currentHour = new Date().getHours();
+
+let greetingText;
+if (currentHour <12) {
+    greetingText = "Good morning!";
+} else if (currentHour < 19) {
+    greetingText = "Good afternoon!";
+} else if (currentHour < 24) {
+    greetingText = "Good evening!";
+} else {
+    greetingText = "Welcome!";
+}
+
+//TEMPERATURE CHANGE 
+document.querySelector(".weather-group").addEventListener("click", function(e) {
+   
+    if (e.target.id == "celsius") {
+        document.querySelector("p#weather").innerHTML = celsiusText;
+    } else if (e.target.id == "fahr") {
+        document.querySelector("p#weather").innerHTML = farenheitText;
+    }
+});
+
+// const greetingText = "Good morning!";
 const weatherCondition = "sunny";
 const userLocation = "New York";
 let temperature = 25;//sadly we have to set this manually right now
@@ -56,7 +112,7 @@ let farenheitText = `The weather is ${weatherCondition} in ${userLocation} and i
 document.querySelector("#greeting").innerHTML = greetingText;
 document.querySelector("p#weather").innerHTML = celsiusText;
 
-
+}
 
 
 //array for the images
@@ -70,29 +126,6 @@ student = {"name": "John", "yearOfBirth": 1980, "country": "Italy"}//key value p
 
 //The given JavaScript comparison a == b, where a = "2" and b = 2, will produce a result of true. This is because the loose equality operator (==) performs type coercion, converting the operands to the same type before making the comparison. 
 
-//TEMPERATURE CHANGE (my function)
-// document.querySelector(".weather-group").addEventListener("click", function(e) {
-//     //look for target: input#fahr or input#celsius by passing the e to console log, which is an object
-//     console.log(e.target.id);//this returns the id when we click the button
-//     //we will need to write a conditional here 
-//     let finalTemp;
-//     if (e.target.id == "fahr") {
-//         finalTemp = 5/9 * (temperature - 32)
-//     } else {
-//         finalTemp =  (temperature * (9/5)) + 32
-//     } return finalTemp;
-// });
-
-
-//TEMPERATURE CHANGE 
-document.querySelector(".weather-group").addEventListener("click", function(e) {
-   
-    if (e.target.id == "celsius") {
-        document.querySelector("p#weather").innerHTML = celsiusText;
-    } else if (e.target.id == "fahr") {
-        document.querySelector("p#weather").innerHTML = farenheitText;
-    }
-});
 
 
 //DATE SECTION
@@ -130,61 +163,25 @@ document.querySelector("span[data-time=seconds]").textContent = localTime.getSec
 setTimeout(function(){},3000) //delayed 3 seconds, 3000 is in milliseconds
 
 
-//padstart
+//padstart example
 let myString = "8"
 myString.padStart(4,"0") //this will make it 08, so pads the single digits
+
+function clockHandler() {
 setInterval(function(){
     let localTime = new Date();
 document.querySelector("span[data-time=hours]").textContent = localTime.getHours().toString().padStart(2,"0");
 document.querySelector("span[data-time=minutes]").textContent = localTime.getMinutes().toString().padStart(2,"0");
 document.querySelector("span[data-time=seconds]").textContent = localTime.getSeconds().toString().padStart(2,"0");
 },1000); //every second gets the time every second updated
+}
 
-//LOOPS
-let animals = ["dog", "cat", "lion"];
 
-for (let i = 0; i < animals.length; i++) {//this works regardless of how many elements in the array
-    console.log(i);
-}
-//easier way below, same result
-for (let i in animals) {//this handles the size of the array as necessary
-    console.log(animals[i]);
-}
-//loop through and object
-let bird = {"name": "parakeet", "color": "white"};
-
-for (let i in animals) {
-    console.log(bird[1]);//prints value
-    console.log(1 + ":" + animals[i]);//prints the name of the property and the value
-}
-//test of loops - print all accounts starting with EX to the console
-let bankAccounts = ["EX_983746", "US_233478", "UK_098765", "EX_098777", "PT_002544"];
-
-function printEXAccounts() {
-// write your solution here
-    for (let i of bankAccounts) {
-        if (i.startsWith("E")) {
-        console.log(i);
-    }
-}
-}
 //GALLERY SECTION
+function galleryHandler() {
 //src: "./assets/gallery/image1.jpg alt="Thumbnail Image 1"
 
-const galleryImages = [
-    {
-        src: "./assets/gallery/image1.jpg",
-        alt: "Thumbnail Image 1"
-    },
-    {
-        src: "./assets/gallery/image2.jpg",
-        alt: "Thumbnail Image 2"
-    },
-    {
-        src: "./assets/gallery/image3.jpg",
-        alt: "Thumbnail Image 3"
-    }
-];
+
 
 // for (let i in galleryImages) {
 //     console.log(galleryImages[i]);
@@ -195,53 +192,76 @@ galleryImages.forEach(function(image, index){
     console.log(image); //using index AND the elements themselves
 });
 
-//REVIEW
-// let lessons = [
-//     {
-//       id: "273",
-//       title: "Variables",
-//       length: 12
-//     },
-//     {
-//      id: "295",
-//      title: "Conditionals",
-//      length: 12
-//     },
-//     {
-//      id: "299",
-//      title: "Functions",
-//      length: 12
-//     }
-//     ]; 
     
-//     // use this variable to add the lesson titles
-//     let lessonTitles = [];
-    
-//     // write your code below this line
-//     lessons.forEach(function(lesson) {
-//         lessonTitles.push(lesson.title);
-//     });
-    
-let mainImage = document.querySelector("#gallery > img");
+let mainImage = document.querySelector("#gallery > img"); //this selects the element, but he created a variable to keep using query selector
 let thumbnails = document.querySelector("#gallery .thumbnails")
 
-mainImage.src = galleryImages[0].src;
-mainImage.alt = galleryImages[0].src;
+mainImage.src = galleryImages[0].src;//this actually populates the first image from the array inside the html
+
+
+mainImage.alt = galleryImages[0].src;//this gets the alt text from the array
 
 //dynamic thumbnails below
 //this dynamically creates thumbnails for each image in the 'gallery images' array and appends them to the thumbnails container.
 //the code uses the 'querySelector' method to select elements by their css selector and the 'create Element' method to create new 'img' elements for the thumbnails. the 'forEach' method is used to iterate over the 'galleryImages' array and create a thumbnails for each image.
 
 galleryImages.forEach(function(image, index){
-    let thumb = document.createElement("img");
+    let thumb = document.createElement("img");// this creates and html element
     thumb.src = image.src;
     thumb.alt = image.alt;
     thumb.dataset.arrayIndex = index;
-    thumb.dataset.selected = false;
+   // thumb.dataset.selected = false; wrote the if below
+
+    if (index === 0) {
+        thumb.dataset.selected = true;
+    } else {
+        thumb.dataset.selected = false;
+    }
+
+//using terniary if --- same as above but shorter
+//thumb.dataset.selected = index === 0 ? true : false;
+
+thumb.addEventListener("click", function(e) {
+    let selectedIndex = e.target.dataset.arrayIndex; 
+    let selectedImage = galleryImages[selectedIndex];
+    mainImage.src = selectedImage.src;
+    mainImage.alt = selectedImage.alt;
+
+    thumbnails.querySelectorAll("img").forEach(function(img) {
+        img.dataset.selected = false; //this makes them all unselected when you click something
+    });
+
+    e.target.dataset.selected = true; //making sure the one you select is highlighted, or selected
+});
+//to add more images, just modify the array - this makes it VERY dynamic
+
     thumbnails.appendChild(thumb);
 });
+}
 
 
+//Products Section - will be taken from json file
 
+{/* <div class="product-item">
+<img src="./assets/products/img6.png" alt="AstroFiction">
+<div class="product-details">
+   <h3 class="product-title">AstroFiction</h3>
+   <p class="product-author">John Doe</p>
+   <p class="price-title">Price</p>
+   <p class="product-price">$ 49.90</p>
+    </div>
+</div> */}
+
+function productsHandler(){
+
+}
+
+//Page Load
+
+menuHandler();
+greetingHandler();
+clockHandler();
+galleryHandler();
+productsHandler();
 
 
