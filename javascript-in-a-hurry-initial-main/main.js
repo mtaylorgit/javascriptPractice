@@ -240,11 +240,12 @@ thumb.addEventListener("click", function(e) {
 }
 
 
-//Products Section - will be taken from json file
+//Products Section - will be taken from json file --- copied pasted here so we can write the loop below!!
 
 {/* <div class="product-item">
 <img src="./assets/products/img6.png" alt="AstroFiction">
-<div class="product-details">
+
+<div class="product-details"> 
    <h3 class="product-title">AstroFiction</h3>
    <p class="product-author">John Doe</p>
    <p class="price-title">Price</p>
@@ -252,9 +253,76 @@ thumb.addEventListener("click", function(e) {
     </div>
 </div> */}
 
-function productsHandler(){
+function productsHandler(){//run loop through products array and generate these items
+
+    let productsSection = document.querySelector(".products-area");
+
+    //created these variables for using the buttons free, paid 
+    let freeProducts = products.filter(function(item){
+        return !item.price || item.price <= 0;
+    });
+    let paidProducts = products.filter(function(item){
+        return item.price > 0;
+    });
+
+    //run a loop through the products and create an HTML element ("product-item") for each of them
+    products.forEach(function(product,index){
+        //Create the HTML element for the individual product
+        let productElm = document.createElement("div");
+        productElm.classList.add("product-item");
+        
+        //Create the product image
+        let productImage = document.createElement("img");
+        productImage.src = product.image;
+        productImage.alt = "Image for " + product.title;//did this because they don't have alt
+
+        //Create the product details section
+        let productDetails = document.createElement("div");
+        productDetails.classList.add("product-details");
+
+        //Create Product Title (the H3), author, price-title, and price (which are 3 Ps)
+        let productTitle = document.createElement("h3");
+        productTitle.classList.add("product-title");
+        productTitle.textContent = product.title;
+
+        //these are the P tags
+        let productAuthor = document.createElement("p");
+        productAuthor.classList.add("product-author");
+        productAuthor.textContent = product.author;
+
+        let priceTitle = document.createElement("p");
+        priceTitle.classList.add("price-title");
+        priceTitle.textContent = "Price";
+
+        let productPrice = document.createElement("p");
+        productPrice.classList.add("product-price");
+        productPrice.textContent = product.price > 0 ? "$" + product.price.toFixed(2) : "Free";
+
+        //Append the product details
+        productDetails.append(productTitle);
+        productDetails.append(productAuthor);
+        productDetails.append(priceTitle);
+        productDetails.append(productPrice);
+
+        //Add the child HTML elements of the product
+        productElm.append(productImage);
+        productElm.append(productDetails);
+
+        //Send all the complete individual product to the product section
+        productsSection.append(productElm);
+    });
+
+  //Array filter method to get buttons to work (all, paid, free)
+ 
+  document.querySelector(".products-filter label[for=all] span.product-amount").textContent = products.length;
+  document.querySelector(".products-filter label[for=paid] span.product-amount").textContent = paidProducts.length;
+  document.querySelector(".products-filter label[for=free] span.product-amount").textContent = freeProducts.length;
 
 }
+
+
+
+
 
 //Page Load
 
