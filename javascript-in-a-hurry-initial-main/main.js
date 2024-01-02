@@ -1,4 +1,6 @@
 
+
+
 //put this gallery at the top so it will be available to all functions
 const galleryImages = [
 
@@ -188,9 +190,9 @@ function galleryHandler() {
 // }
 
 //forEach Loop(a method of the array data type)
-galleryImages.forEach(function(image, index){
-    console.log(image); //using index AND the elements themselves
-});
+// galleryImages.forEach(function(image, index){
+//     console.log(image); //using index AND the elements themselves
+// });
 
     
 let mainImage = document.querySelector("#gallery > img"); //this selects the element, but he created a variable to keep using query selector
@@ -316,6 +318,10 @@ function productsHandler(){//run loop through products array and generate these 
     let freeProducts = products.filter(function(item){
         return !item.price || item.price <= 0;
     });
+
+    // let freeProducts = products.filter(item => !item.price || item.price <= 0); <--example of above written as arrow function
+    //notice lack of parenthesis, return keyword, braces
+    
     let paidProducts = products.filter(function(item){
         return item.price > 0;
     });
@@ -397,6 +403,36 @@ function footerHandler() {
 }
 
 
+  
+
+// Fetch method for using API for weather at location
+navigator.geolocation.getCurrentPosition(function(position){
+
+    const latitude = position.coords.latitude;
+    
+    const longitude = position.coords.longitude;
+ 
+
+    console.log(latitude);
+    console.log(longitude);
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m&temperature_unit=fahrenheit`;
+    console.log(url);
+
+
+
+    fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+        let temperature = data.current.temperature_2m;
+    console.log(temperature);
+});
+});
+
+
+  
+
+
+
 
 //Page Load
 
@@ -406,5 +442,6 @@ clockHandler();
 galleryHandler();
 productsHandler();
 footerHandler();
+
 
 
